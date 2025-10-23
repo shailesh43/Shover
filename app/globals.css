@@ -1,4 +1,7 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+/* [!code ++:2] */
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
 
 :root {
   --background: #ffffff;
