@@ -69,7 +69,7 @@ export default function Home() {
         <div className="row-span-11 ml-4">
           <div className="md:text-5xl text-3xl mt-16 max-w-3xl tracking-tight text-wrap">
           Build modern, sleek & animated design interfaces with shover. <br />
-          <p className="md:mt-4 md:text-lg text-sm mt-2 tracking-tight text-neutral-600">Copy, paste, or install via CLI. These are built on top of shadcn/ui written with in my taste of designs.</p> 
+          <p className="md:mt-4 md:text-lg text-sm mt-2 tracking-tight text-neutral-600">Copy, paste, or install via terminal. These components are built on top of shadcn/ui which <br />are crafted with my design style.</p> 
           </div>
           <div className="min-h-8 flex gap-4 mt-10">
             <div>
