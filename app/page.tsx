@@ -10,7 +10,7 @@ export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
   return (
 
-    <>
+    <div>
       <div className="min-h-screen w-full grid grid-cols-1 mx-auto max-w-4xl">
         
         <div className="row-span-1 grid grid-cols-3 text-neutral-800  md:mt-3 mt-2 justify-end px-2">
@@ -67,7 +67,7 @@ export default function Home() {
         </div>
         
         <div className="row-span-11 ml-4">
-          <div className="md:text-5xl text-3xl mt-16 max-w-3xl tracking-tight text-wrap">
+          <div className="md:text-5xl text-3xl mt-20 max-w-3xl tracking-tight text-wrap">
           Build modern, sleek & animated design interfaces with shover. <br />
           <p className="md:mt-4 md:text-lg text-sm mt-2 tracking-tight text-neutral-600">Copy, paste, or install via terminal. These components are built on top of shadcn/ui which <br />are crafted with my design style.</p> 
           </div>
@@ -92,7 +92,34 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        <div className="Hero-Image relative w-full h-screen overflow-hidden p-4 mt-10 border rounded-lg">
+        <Image
+          src="/assets/Hero-section-Image.png"
+          alt="Hero Image"
+          fill
+          className=""
+          priority
+        />
       </div>
-    </>
+
+      <div className="features-section mt-10">
+        <p>Features Section</p>
+        <div className="grid grid-cols-2 gap-4 items-center justify-center">
+          <div className="">1</div>
+          <div>2</div>
+          <div>3</div>
+          <div>4</div>
+        </div>
+      </div>
+
+      <div className="FAQ">
+      <p>FAQ Section</p>
+        </div>
+        <div className="Footer">
+          <p>Footer</p>
+        </div> 
+      </div>
+    </div>
   );
 }
