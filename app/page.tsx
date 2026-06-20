@@ -1,9 +1,11 @@
-import styles from "./page.module.css";
+import { Hero01 } from '@/components/hero-01';
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col justify-between p-24">
-      <h1>Welcome to Shover UI</h1>
-    </div>
+    <main className="w-full">
+      <div className="mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-8">
+        <Hero01 />
+      </div>
+    </main>
   );
 }
