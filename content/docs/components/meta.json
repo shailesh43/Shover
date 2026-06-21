@@ -1,6 +1,6 @@
 {
   "title": "Components",
-  "icon": "CircleQuestionMark",
-  "pages": ["apple-hello", "smooth-carousel"],
+  "icon": "Component",
+  "pages": ["apple-hello", "macbook-screen"],
   "defaultOpen": true
 }
