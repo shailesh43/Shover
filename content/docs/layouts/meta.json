@@ -1,0 +1,6 @@
+{
+  "title": "Layouts",
+  "icon": "PanelsTopLeft",
+  "pages": ["hero-section", "call-to-action"],
+  "defaultOpen": true
+}
