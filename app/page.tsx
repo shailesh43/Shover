@@ -1,4 +1,5 @@
 import { Hero01 } from '@/components/hero-01';
+import Page from './(home)/page';
 
 export default function Home() {
   return (
