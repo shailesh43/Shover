@@ -1,0 +1,15 @@
+{
+  "root": true,
+  "pages": [
+    "index",
+    "getting-started",
+    "---Components---",
+    "/components/index",
+    "/components",
+    "---Layouts---",
+    "/layouts/index",
+    "/layouts",
+    "---Contributing---",
+    "/contributing/index"
+  ]
+}
