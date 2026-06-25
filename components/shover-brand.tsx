@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export function ShoverBrand() {
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 dark:text-neutral-200 text-neutral-700">
       <Image
         src="/shover-logo.png"
         alt="Shover"
