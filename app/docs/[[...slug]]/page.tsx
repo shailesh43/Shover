@@ -61,3 +61,4 @@ export async function generateMetadata(props: PageProps<'/docs/[[...slug]]'>): P
     },
   };
 }
+  
