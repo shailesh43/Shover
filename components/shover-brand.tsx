@@ -9,8 +9,9 @@ export function ShoverBrand() {
         width={22}
         height={22}
         className="rounded-md object-contain"
+        loading="eager"
       />
-      <span className="text-md font-black tracking-tighter">Shover</span>
+      <span className="text-md font-semibold tracking-tighter">Shover</span>
     </div>
   );
 }
