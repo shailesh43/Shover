@@ -5,6 +5,6 @@ export const docsContentRoute = '/llms.mdx/docs';
 
 export const gitConfig = {
   owner: "shailesh43",
-  repoName: "Shover",
-  repoUrl: "https://github.com/shailesh43/Shover",
+  repo: "Shover",
+  branch: "main",
 } as const;
