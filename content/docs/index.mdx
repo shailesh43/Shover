@@ -1,144 +1,27 @@
 ---
-title: Introduction    
-description: Shover is a shadCN based UI library
+title: About Shover
+description: Build modern, sleek & animated interfaces with Shover.
 icon: CircleQuestionMark
 ---
 
-## What is Shover
+[Shover](/) is a modern UI library built on top of **shadcn/ui**, designed to help developers build sleek, animated, and production-ready interfaces with less effort.
 
-You can customize Search UI from [`<RootProvider />`](/docs/ui/layouts/root-provider).
+## Why Shover?
 
-```tsx title="app/layout.tsx"
-import { RootProvider } from 'fumadocs-ui/provider/<framework>';
-import type { ReactNode } from 'react';
-import { SearchDialog } from '@/components/my-search-dialog';
+Building beautiful interfaces shouldn't mean stitching together dozens of libraries or rewriting the same components every project.
 
-export default function Layout({ children }: { children: ReactNode }) {
-  return (
-    <html>
-      <body>
-        <RootProvider
-          // [!code highlight:4]
-          search={{
-            enabled: false, // disable search entirely
-            SearchDialog, // replace search dialog
-          }}
-        >
-          {children}
-        </RootProvider>
-      </body>
-    </html>
-  );
-}
-```
+Shover combines reusable components, smooth animations, thoughtfully designed blocks, and modern development practices into one cohesive library—helping you build polished interfaces faster while keeping full control over your code.
 
-import { HomeIcon } from 'lucide-react';
+## Open Source & Community-Driven
 
-<Cards>
-  <Card
-    href="https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating"
-    title="Fetching, Caching, and Revalidating"
-  >
-    Learn more about caching in Next.js
-  </Card>
-  <Card title="href is optional">Learn more about `fetch` in Next.js.</Card>
-  <Card icon={<HomeIcon />} href="/" title="Home">
-    You can include icons too.
-  </Card>
-</Cards>
+Shover is completely open source and built in public. The goal is to build a collection that's practical, well-crafted, and genuinely useful for the developer community.
 
-### Hot Keys
+<Callout title="Want to Contribute?">
+  Read our in-depth [Contribution guide](/docs/contribution) to Shover.
+</Callout>
 
-Customize the hot keys to trigger search dialog, by default it's <kbd>⌘</kbd> <kbd>K</kbd> or <kbd>Ctrl</kbd> <kbd>K</kbd>.
+## Design Philosophy
 
-```tsx
-import { RootProvider } from 'fumadocs-ui/provider/<framework>';
+Shover is built around a simple idea: **copy, customize, and make it yours.**
 
-<RootProvider
-  search={{
-    hotKey: [
-      {
-        display: 'K',
-        key: 'k', // key code, or a function determining whether the key is pressed
-      },
-    ],
-  }}
->
-  {children}
-</RootProvider>;
-```
-
-### References
-
-A full list of options.
-
-<auto-type-table cwd path="content/docs/ui/props.ts" name="SearchProps" />
-
-## Custom UI
-
-Fumadocs UI also exposes a lower level `<SearchDialog />` component for advanced use, you can create your own search dialog to replace the default one.
-
-```tsx twoslash
-'use client';
-import React from 'react';
-import { useDocsSearch } from 'fumadocs-core/search/client';
-import { fetchClient } from 'fumadocs-core/search/client/fetch';
-import {
-  SearchDialog,
-  SearchDialogClose,
-  SearchDialogContent,
-  SearchDialogHeader,
-  SearchDialogFooter,
-  SearchDialogIcon,
-  SearchDialogInput,
-  SearchDialogList,
-  SearchDialogOverlay,
-  type SharedProps,
-} from 'fumadocs-ui/components/dialog/search';
-import { useI18n } from 'fumadocs-ui/contexts/i18n';
-
-export default function DefaultSearchDialog(props: SharedProps) {
-  const { locale } = useI18n(); // (optional) for i18n
-  const { search, setSearch, query } = useDocsSearch({
-    client: fetchClient({
-      locale,
-    }),
-  });
-
-  return (
-    <SearchDialog search={search} onSearchChange={setSearch} isLoading={query.isLoading} {...props}>
-      <SearchDialogOverlay />
-      <SearchDialogContent>
-        <SearchDialogHeader>
-          <SearchDialogIcon />
-          <SearchDialogInput />
-          <SearchDialogClose />
-        </SearchDialogHeader>
-        <SearchDialogList items={query.data !== 'empty' ? query.data : null} />
-      </SearchDialogContent>
-      <SearchDialogFooter>{/* footer items */}</SearchDialogFooter>
-    </SearchDialog>
-  );
-}
-```
-
-### Content Renderer
-
-The content in search result supports Markdown, match highlights are expressed using `<mark />`.
-
-You can customize the Markdown renderer.
-
-```tsx title="components/search.tsx"
-<SearchDialogList
-  items={query.data !== 'empty' ? query.data : null}
-  // [!code highlight:8]
-  Item={(props) => (
-    <SearchDialogListItem
-      {...props}
-      renderMarkdown={(text) => {
-        // ...
-      }}
-    />
-  )}
-/>
-```
+Every component is designed to be production-ready, easy to understand, and flexible enough to fit your own design system. Rather than hiding implementation behind abstractions, Shover encourages developers to own the code they ship, making customization straightforward and future maintenance easier.

@@ -1,13 +1,10 @@
 {
   "root": true,
   "pages": [
-    "index",
+    "---Introduction---",
     "getting-started",
-    "---Components---",
-    "/components/index",
+    "index",
     "/components",
-    "---Layouts---",
-    "/layouts/index",
     "/layouts",
     "---Contributing---",
     "/contributing/index"
