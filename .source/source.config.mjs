@@ -15,7 +15,12 @@ var docs = defineDocs({
 });
 var source_config_default = defineConfig({
   mdxOptions: {
-    // MDX options
+    rehypeCodeOptions: {
+      themes: {
+        light: "catppuccin-latte",
+        dark: "catppuccin-mocha"
+      }
+    }
   }
 });
 export {

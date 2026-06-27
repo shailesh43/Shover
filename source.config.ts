@@ -17,7 +17,13 @@ export const docs = defineDocs({
 });
 
 export default defineConfig({
-  mdxOptions: {
-    // MDX options
+    mdxOptions: {
+    rehypeCodeOptions: {
+      themes: {
+        light: 'catppuccin-latte',
+        dark: 'catppuccin-mocha',   
+      },
+    },
   },
+
 });
