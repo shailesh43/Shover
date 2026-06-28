@@ -2,11 +2,12 @@
   "root": true,
   "pages": [
     "---Introduction---",
-    "getting-started",
     "index",
+    "getting-started",
+    "---UI Elements---",
     "/components",
     "/layouts",
     "---Contributing---",
-    "/contributing/index"
+    "contributing-guide"
   ]
 }
