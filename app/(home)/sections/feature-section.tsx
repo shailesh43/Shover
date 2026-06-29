@@ -22,7 +22,7 @@ export default function FeaturesSection() {
             <div className="bg-linear-to-t from-background absolute inset-0 z-10 to-transparent" />
 
             <Image
-              src="/dashboard-dark.png"
+              src="/feature-dark.png"
               className="hidden dark:block"
               alt="Shover Components Preview"
               width={2797}
@@ -30,7 +30,7 @@ export default function FeaturesSection() {
             />
 
             <Image
-              src="/dashboard-light.png"
+              src="/feature-light.png"
               className="dark:hidden"
               alt="Shover Components Preview"
               width={2797}

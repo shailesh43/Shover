@@ -78,8 +78,8 @@ export default function HeroSection() {
                       asChild
                       size="lg"
                       className="rounded-xl px-5 text-base">
-                      <Link href="#link">
-                        <span className="text-nowrap">Get Started &rarr;  </span>
+                      <Link href="/docs/getting-started">
+                        <span className="flex items-center gap-2">Get Started <ArrowRight/></span>
                       </Link>
                     </Button>
                   </div>
