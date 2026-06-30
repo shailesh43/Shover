@@ -22,19 +22,21 @@ export default function FeaturesSection() {
             <div className="bg-linear-to-t from-background absolute inset-0 z-10 to-transparent" />
 
             <Image
-              src="/feature-dark.png"
+              src="/docs-dark.png"
               className="hidden dark:block"
               alt="Shover Components Preview"
-              width={2797}
-              height={1137}
+              width="2644"
+              height="1490"
+              priority
             />
 
             <Image
-              src="/feature-light.png"
+              src="/docs-light.png"
               className="dark:hidden"
               alt="Shover Components Preview"
-              width={2797}
-              height={1137}
+              width="2644"
+              height="1490"
+              priority
             />
           </div>
         </div>
