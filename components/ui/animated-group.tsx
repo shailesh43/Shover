@@ -1,5 +1,5 @@
 'use client';
-import { ReactNode } from 'react';
+import { JSX, ReactNode } from 'react';
 import { motion, Variants } from 'motion/react';
 import React from 'react';
 
@@ -125,6 +125,7 @@ function AnimatedGroup({
   );
 
   return (
+    // eslint-disable-next-line react-hooks/static-components
     <MotionComponent
       initial='hidden'
       animate='visible'

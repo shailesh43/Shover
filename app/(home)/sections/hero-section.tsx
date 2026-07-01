@@ -1,6 +1,9 @@
-import React from 'react'
+'use client'
+
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { ArrowRight, TerminalIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import { TextEffect } from '@/components/ui/text-effect'
@@ -26,6 +29,38 @@ const transitionVariants = {
   },
 }
 
+// Components cycled through in the terminal command.
+const FLIP_COMPONENTS = ['apple-hello', 'desktop-dock', 'card-carousel']
+
+function FlippingComponentName() {
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setIndex((i) => (i + 1) % FLIP_COMPONENTS.length)
+    }, 2000)
+    return () => clearInterval(id)
+  }, [])
+
+  return (
+    <span
+      className="relative inline-block overflow-hidden align-bottom"
+      style={{ minWidth: '9ch' }}>
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={FLIP_COMPONENTS[index]}
+          initial={{ y: 12, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -12, opacity: 0 }}
+          transition={{ duration: 0.35, ease: 'easeInOut' }}
+          className="inline-block">
+          {FLIP_COMPONENTS[index]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  )
+}
+
 export default function HeroSection() {
   return (
     <>
@@ -37,16 +72,54 @@ export default function HeroSection() {
           <div className="h-320 absolute left-0 top-0 w-60 -rotate-45 rounded-full bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.06)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)] [translate:5%_-50%]" />
           <div className="h-320 -translate-y-87.5 absolute left-0 top-0 w-60 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.04)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)]" />
         </div>
-        <section>
-          <div className="relative pt-12">
+        <section className="relative overflow-hidden lg:h-[calc(100svh-4rem)]">
+          <div className="relative flex h-full items-center">            
             <div className="absolute inset-0 -z-10 size-full [background:radial-gradient(125%_125%_at_50%_100%,transparent_0%,var(--color-background)_75%)]"></div>
-            <div className="mx-auto max-w-7xl">
-              <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">
+            <div
+              className="relative order-last mt-10 aspect-15/8 w-full overflow-hidden
+                lg:absolute lg:inset-y-0 lg:right-0 lg:top-0 lg:z-0 lg:mt-0 lg:aspect-auto lg:h-svh lg:w-[58%]
+                xl:w-[60%]">
+              <div className="relative h-full w-full">
+                {/* Radial gradient overlay: transparent over the right/sharp part of the image, fading to solid background color toward the left edge where the text sits */}
+                <div className="bg-radial-[at_75%_35%] to-background z-1 -inset-17 absolute from-transparent to-40% hidden lg:block" />
+
+                <Image
+                  className="hidden object-cover object-top-right dark:block"
+                  src="/feature-dark.png"
+                  alt="app screen"
+                  fill
+                  sizes="(min-width: 1024px) 60vw, 100vw"
+                  priority
+                />
+                <Image
+                  className="object-cover object-top-right dark:hidden"
+                  src="/feature-light.png"
+                  alt="app screen"
+                  fill
+                  sizes="(min-width: 1024px) 60vw, 100vw"
+                  priority
+                />
+              </div>
+            </div>
+
+            <div className="relative z-10 mx-auto grid grid-cols-1 items-center gap-10 lg:block">
+              {/* Text column */}
+              <div className="text-center sm:mx-auto sm:w-10/12 lg:mx-0 lg:w-1/2 lg:text-left lg:pr-6 xl:pr-10">
+                <Link
+                  href="/docs/layouts/hero-section"
+                  className="rounded-(--radius) mx-auto flex w-fit items-center gap-2 border p-1 pr-3 lg:mx-0">
+                  <span className="bg-muted rounded-[calc(var(--radius)-0.25rem)] px-2 py-1 text-xs">New</span>
+                  <span className="text-sm">Responsive Layouts</span>
+                  <span className="bg-(--color-border) block h-4 w-px"></span>
+
+                  <ArrowRight className="size-4" />
+                </Link>
+
                 <TextEffect
                   preset="fade-in-blur"
                   speedSegment={0.3}
                   as="h1"
-                  className="mt-8 text-balance text-4xl md:text-5xl lg:mt-16 font-sans tracking-tighter">
+                  className="mt-8 text-balance font-sans text-4xl tracking-tighter md:text-6xl lg:mt-16">
                   Build modern, sleek & animated interfaces with Shover
                 </TextEffect>
                 <TextEffect
@@ -55,9 +128,10 @@ export default function HeroSection() {
                   speedSegment={0.3}
                   delay={0.5}
                   as="p"
-                  className="mx-auto mt-8 max-w-5xl text-balance text-lg">
-                  A modern UI library built on top of shadcn/ui, featuring beautifully crafted components, smooth animations, reusable blocks, and everything you need to build polished interfaces faster.                
+                  className="mx-auto mt-8 max-w-5xl text-neutral-500 dark:text-neutral-400 text-lg lg:mx-0">
+                  A modern UI library built on top of shadcn/ui, featuring beautifully crafted components, smooth animations, reusable blocks, and everything you need to build polished interfaces faster.
                 </TextEffect>
+
                 <AnimatedGroup
                   variants={{
                     container: {
@@ -70,60 +144,41 @@ export default function HeroSection() {
                     },
                     ...transitionVariants,
                   }}
-                  className="mt-12 flex flex-col items-center justify-center gap-2 md:flex-row">
+                  className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row lg:justify-start">
                   <div
                     key={1}
+                    className="border-blue-100 rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5">
+                    <Button
+                      asChild
+                      size="lg"
+                      className="bg-neutral-200 *:hover:bg-neutral-200 dark:bg-neutral-800 dark:*:hover:bg-neutral-700 text-neutral-800 dark:text-neutral-100 px-4">
+                      <Link href="/docs">
+                        <TerminalIcon className="h-5 w-5 shrink-0 font-bold text-neutral-800 dark:text-neutral-100" />
+                        <span className="flex items-center font-mono text-sm tracking-tight sm:text-base">
+                          <span className="text-green-500 dark:text-green-300">npx&nbsp;</span>
+                          shadcn add @shover/
+                          <FlippingComponentName />
+                        </span>
+                      </Link>
+                    </Button>
+                  </div>
+                  <div
+                    key={2}
                     className="bg-foreground/10 rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5">
                     <Button
                       asChild
                       size="lg"
                       className="rounded-xl px-5 text-base">
                       <Link href="/docs/getting-started">
-                        <span className="flex items-center gap-2">Get Started <ArrowRight/></span>
+                        <span className="flex items-center gap-2">
+                          Get Started <ArrowRight />
+                        </span>
                       </Link>
                     </Button>
                   </div>
                 </AnimatedGroup>
               </div>
             </div>
-
-            <AnimatedGroup
-              variants={{
-                container: {
-                  visible: {
-                    transition: {
-                      staggerChildren: 0.05,
-                      delayChildren: 0.75,
-                    },
-                  },
-                },
-                ...transitionVariants,
-              }}>
-              <div className="relative -mr-56 mt-8 overflow-hidden px-2 sm:mr-0 sm:mt-12 md:mt-20">
-                <div
-                  aria-hidden
-                  className="bg-linear-to-b to-background absolute inset-0 z-10 from-transparent from-35%"
-                />
-                <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1">
-                  <Image
-                    className="bg-background aspect-15/8 relative hidden rounded-2xl dark:block"
-                    src="/feature-dark.png"
-                    alt="app screen"
-                    width="2700"
-                    height="1440"
-                    priority
-                  />
-                  <Image
-                    className="z-2 border-border/25 aspect-15/8 relative rounded-2xl border dark:hidden"
-                    src="/feature-light.png"
-                    alt="app screen"
-                    width="2700"
-                    height="1440"
-                    priority
-                  />
-                </div>
-              </div>
-            </AnimatedGroup>
           </div>
         </section>
         <br />

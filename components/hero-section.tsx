@@ -6,44 +6,112 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/effect-coverflow'
 import Link from 'next/link'
-import { ArrowRight, Rocket } from 'lucide-react'
+import { ArrowRight, TerminalIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
+import { TextEffect } from '@/components/ui/text-effect'
+import { AnimatedGroup } from '@/components/ui/animated-group'
+
+const transitionVariants = {
+    item: {
+        hidden: {
+            opacity: 0,
+            filter: 'blur(10px)',
+            y: 12,
+        },
+        visible: {
+            opacity: 1,
+            filter: 'blur(0px)',
+            y: 0,
+            transition: {
+                type: 'spring' as const,
+                bounce: 0.5,
+                duration: 1.8,
+            },
+        },
+    },
+}
 
 export default function HeroSection() {
     return (
         <>
             <main className="overflow-hidden">
+                <div
+                    aria-hidden
+                    className="absolute inset-0 isolate hidden opacity-65 contain-strict lg:block">
+                    <div className="w-140 h-320 -translate-y-87.5 absolute left-0 top-0 -rotate-45 rounded-full bg-[radial-gradient(68.54%_68.72%_at_55.02%_31.46%,hsla(0,0%,85%,.08)_0,hsla(0,0%,55%,.02)_50%,hsla(0,0%,45%,0)_80%)]" />
+                    <div className="h-320 absolute left-0 top-0 w-60 -rotate-45 rounded-full bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.06)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)] [translate:5%_-50%]" />
+                    <div className="h-320 -translate-y-87.5 absolute left-0 top-0 w-60 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.04)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)]" />
+                </div>
                 <section className="relative">
                     <div className="relative py-24 lg:py-28">
                         <div className="mx-auto max-w-7xl px-6 md:px-12">
                             <div className="text-center sm:mx-auto sm:w-10/12 lg:mr-auto lg:mt-0 lg:w-4/5">
                                 <Link
-                                    href="/"
+                                    href="/docs/layouts/hero-section"
                                     className="rounded-(--radius) mx-auto flex w-fit items-center gap-2 border p-1 pr-3">
                                     <span className="bg-muted rounded-[calc(var(--radius)-0.25rem)] px-2 py-1 text-xs">New</span>
-                                    <span className="text-sm">Introduction Tailark Html</span>
+                                    <span className="text-sm">Responsive Layouts</span>
                                     <span className="bg-(--color-border) block h-4 w-px"></span>
 
                                     <ArrowRight className="size-4" />
                                 </Link>
 
-                                <h1 className="mt-8 text-4xl font-semibold md:text-5xl xl:text-5xl xl:[line-height:1.125]">
-                                    Tame the Wild West <br /> of Frontend Development
-                                </h1>
-                                <p className="mx-auto mt-8 hidden max-w-2xl text-wrap text-lg sm:block">Tailwindcss highly customizable components for building modern websites and applications that look and feel the way you mean it.</p>
-                                <p className="mx-auto mt-6 max-w-2xl text-wrap sm:hidden">Highly customizable components for building modern websites and applications, with your personal spark.</p>
+                                <TextEffect
+                                    preset="fade-in-blur"
+                                    speedSegment={0.3}
+                                    as="h1"
+                                    className="mt-8 text-balance text-4xl md:text-6xl lg:mt-16 font-sans tracking-tighter">
+                                    Build modern, sleek & animated interfaces with Shover
+                                </TextEffect>
+                                <TextEffect
+                                    per="line"
+                                    preset="fade-in-blur"
+                                    speedSegment={0.3}
+                                    delay={0.5}
+                                    as="p"
+                                    className="mx-auto mt-8 max-w-5xl text-balance text-lg">
+                                    A modern UI library built on top of shadcn/ui, featuring beautifully crafted components, smooth animations, reusable blocks, and everything you need to build polished interfaces faster.
+                                </TextEffect>
 
-                                <div className="mt-8">
-                                    <Button
-                                        size="lg"
-                                        asChild>
-                                        <Link href="#">
-                                            <Rocket className="relative size-4" />
-                                            <span className="text-nowrap">Start Building</span>
-                                        </Link>
-                                    </Button>
-                                </div>
+                                <AnimatedGroup
+                                    variants={{
+                                        container: {
+                                            visible: {
+                                                transition: {
+                                                    staggerChildren: 0.05,
+                                                    delayChildren: 0.75,
+                                                },
+                                            },
+                                        },
+                                        ...transitionVariants,
+                                    }}
+                                    className="mt-12 flex flex-col items-center justify-center gap-2 md:flex-row">
+                                    <div
+                                        key={1}
+                                        className="border-blue-100 p-0.5">
+                                        <Button
+                                            asChild
+                                            size="lg"
+                                            className="bg-neutral-200 *:hover:bg-neutral-200 dark:bg-neutral-800 dark:*:hover:bg-neutral-700 text-neutral-800 dark:text-neutral-100 px-4">
+                                            <Link href="/docs">
+                                                <TerminalIcon className="h-5 w-5 font-bold text-neutral-800" /><span className="flex items-center font-mono tracking-tight"><span className='text-green-500 dark:text-green-300'>npx </span> shadcn add @shover/componentName </span>
+                                            </Link>
+                                        </Button>
+                                    </div>
+                                    <div
+                                        key={1}
+                                        className="bg-foreground/10 rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5">
+                                        <Button
+                                            asChild
+                                            size="lg"
+                                            className="rounded-xl px-5 text-base">
+                                            <Link href="/docs/getting-started">
+                                                <span className="flex items-center gap-2">Get Started <ArrowRight /></span>
+                                            </Link>
+                                        </Button>
+                                    </div>
+                                </AnimatedGroup>
                             </div>
                             <div className="x-auto relative mx-auto mt-8 max-w-lg sm:mt-12">
                                 <div className="absolute inset-0 -top-8 left-1/2 -z-20 h-56 w-full -translate-x-1/2 [background-image:linear-gradient(to_bottom,transparent_98%,theme(colors.gray.200/75%)_98%),linear-gradient(to_right,transparent_94%,_theme(colors.gray.200/75%)_94%)] [background-size:16px_35px] [mask:radial-gradient(black,transparent_95%)] dark:opacity-10"></div>
